@@ -4,7 +4,7 @@ const { getNewActivity, getActId } = require('../controllers/activity');
 
 
 router.post('/activity', getNewActivity);
-router.post('/activity/:idAct', getActId);
+router.get('/activity/:idAct', getActId);
 
 
 module.exports = router;

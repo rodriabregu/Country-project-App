@@ -37,7 +37,7 @@ const getNewActivity = async (req, res) => {
 const getActId = async (req, res) => {
   try {
     const { idAct } = req.params;
-    if (idAct) {
+    if ( idAct ) {
       const result = await Activity.findOne({ //Matchea con una actividad creada y a parte, devuelve su data Country;
         where: { id: idAct },
         include: Country,
