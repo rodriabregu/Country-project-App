@@ -1,12 +1,12 @@
 const axios = require('axios').default;
-const { Country } = require('../db.js');
+const { Country, Activity} = require('../db.js');
 
 async function getAllCountrys (_req, res) {
     try {
      let countriesDB = await Country.findAll();
      res.json(countriesDB);
     } catch (err) {
-        console.log("Problema al cargar los paises", err);
+        console.log("No se puso cargar los paises de la base de datos.", err);
     }
 };
 async function getFilterCountrys (req, res) {
@@ -17,7 +17,7 @@ async function getFilterCountrys (req, res) {
               where: { name: name }
             });
             if (!result) {
-              return res.status(404).send("No coincinde");
+              return res.status(404).send("No coincide la busqueda del pais.");
             }
             await res.json(result);
         } catch (error) {
@@ -37,9 +37,10 @@ async function getFilterCountrys (req, res) {
 async function getId (req, res) {
   try {
     const { idPais } = req.params;
-    if (idPais) {
+    if ( idPais ) {
       const result = await Country.findOne({
-        where: { id: idPais.toUpperCase() }
+        where: { id: idPais.toUpperCase() },
+        include: Activity,
       });
       if (!result) {
         return res.status(404).send("ID Not found into our database");
