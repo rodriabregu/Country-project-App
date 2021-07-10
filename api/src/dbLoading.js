@@ -37,8 +37,8 @@ async function loadingDb(_req, res) {
     console.log("Loading DB success;");
   } catch (error) {
     console.log(error);
-    res.status(500).send("Server crashed");
-  }
-}
+    res.status(500).send("Server crashed.");
+  };
+};
 
 module.exports = { loadingDb };

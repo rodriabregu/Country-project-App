@@ -1,44 +1,46 @@
-const axios = require('axios').default;
-const { Country, Activity} = require('../db.js');
+const axios = require("axios").default;
+const { Country, Activity } = require("../db.js");
 
-async function getAllCountrys (_req, res) {
+const getAllCountrys = async (_req, res) => {
+  try {
+    let countriesDB = await Country.findAll(); //Deposito todo lo guardadod de la db;
+    res.json(countriesDB);
+  } catch (err) {
+    console.log("Could not load the countries from the database.", err);
+  };
+};
+
+const getFilterCountrys = async (req, res) => {
+  const { name } = req.query;
+  if ( name ) {
     try {
-     let countriesDB = await Country.findAll();
-     res.json(countriesDB);
+      const result = await Country.findOne({ //Comprueba si hay match con lo recibido del query;
+        where: { name: name },
+      });
+      if ( !result ) {
+        return res.status(404).send("Country search does not match."); //En caso de que no haya coincidencia;
+      };
+      await res.json(result); //En caso de sí haber;
     } catch (err) {
-        console.log("No se puso cargar los paises de la base de datos.", err);
-    }
-};
-async function getFilterCountrys (req, res) {
-     const { name } = req.query;
-       if (name) {
-        try {
-            const result = await Country.findOne({
-              where: { name: name }
-            });
-            if (!result) {
-              return res.status(404).send("No coincide la busqueda del pais.");
-            }
-            await res.json(result);
-        } catch (error) {
-          console.log(error);
-          res.status(500).send("Server crashed");
-        }
-       }
-     try {
-     let countriesDB = await Country.findAll();
-     let countriesFilter = countriesDB.slice(0, 10);
-     res.json(countriesFilter);
-    } catch (err) {
-        console.log("Problema al cargar los paises", err);
-    }
+      console.log(err);
+      res.status(500).send("Server crashed.");
+    };
+  };
+  try {
+    let countriesDB = await Country.findAll(); //Deposita todo los datos de la db;
+    let countriesFilter = countriesDB.slice(0, 10); //Muestra los primeros diez;
+    res.json(countriesFilter);
+  } catch (err) {
+    console.log(error);
+    res.status(500).send("Server crashed.");
+  };
 };
 
-async function getId (req, res) {
+const getId = async (req, res) => {
   try {
     const { idPais } = req.params;
     if ( idPais ) {
-      const result = await Country.findOne({
+      const result = await Country.findOne({ //Guarda la coincidencia que haya mediante params y si tiene actividad, también la devuelve;
         where: { id: idPais.toUpperCase() },
         include: Activity,
       });
@@ -47,14 +49,14 @@ async function getId (req, res) {
       }
       await res.json(result);
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     res.status(500).send("Server crashed");
-  }
+  };
 };
 
 module.exports = {
-    getAllCountrys,
-    getFilterCountrys,
-    getId,
+  getAllCountrys,
+  getFilterCountrys,
+  getId,
 };
