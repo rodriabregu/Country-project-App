@@ -5,8 +5,8 @@ const { URL_ALL } = require("./utils/config/constants");
 async function loadingDb(_req, res) {
   try {
     {
-      const ApiAll = await axios.get(URL_ALL);
-      const ModelCountries = ApiAll.data.map( c => {
+      const ApiAll = await axios.get(URL_ALL); //Traigo todo de la API;
+      const ModelCountries = ApiAll.data.map( c => { //Guardo dentro los detalles de toda la API;
         return {
           id: c.alpha3Code,
           name: c.name,
@@ -21,7 +21,7 @@ async function loadingDb(_req, res) {
       });
       /* console.log(ApiAll); */
        ModelCountries.forEach( async e => {
-        await Country.create({
+        await Country.create({ //Creo los detalles en la db;
             id: e.alpha3Code,
             name: e.name,
             alpha3Code: e.alpha3Code,
