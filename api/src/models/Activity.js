@@ -4,7 +4,6 @@ module.exports = (sequelize) => {
   sequelize.define("activity", { //Pluraliza;
     id: {
       type: DataTypes.UUID,
-      allowNull: false,
       primaryKey: true,
       unique: true,
     },
@@ -17,7 +16,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     duration: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     season: {
