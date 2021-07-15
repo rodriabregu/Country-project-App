@@ -14,13 +14,13 @@ const getFilterCountrys = async (req, res) => {
   const { name } = req.query;
   if ( name ) {
     try {
-      const result = await Country.findOne({ //Comprueba si hay match con lo recibido del query;
+      const result = await Country.findAll({ //Comprueba si hay match con lo recibido del query;
         where: { name: name },
       });
       if ( !result ) {
         return res.status(404).send("Country search does not match."); //En caso de que no haya coincidencia;
       };
-      await res.json(result); //En caso de sí haber;
+      return await res.json(result); //En caso de sí haber;
     } catch (err) {
       console.log(err);
       res.status(500).send("Server crashed.");
@@ -31,7 +31,7 @@ const getFilterCountrys = async (req, res) => {
     let countriesFilter = countriesDB.slice(0, 10); //Muestra los primeros diez;
     res.json(countriesFilter);
   } catch (err) {
-    console.log(error);
+    console.log(err);
     res.status(500).send("Server crashed.");
   };
 };
