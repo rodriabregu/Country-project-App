@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
 
 function Nav() {
-    const [nav, setNav] = useState(false);
-    const changeBackground = () => {
-        if(window.scrollY >= 50) {
-            setNav(true);
-        } else {
-            setNav(false);
-        };
-    };
-    window.addEventListener('scroll', changeBackground);
+
+  const [activity, setActivity] = useState("");
+  const dispatch = useDispatch();
+
     return (
-        <nav className={nav ? 'nav active' : 'nav'}>
-            <label className='menu-icon' for='menu-btn'>
-                <span className='nav-icon'></span>
-            </label>
-            <ul className='menu'>
-                <li><Link to='/home'>Home</Link></li>
-                <li><Link to='/about'>About</Link></li>
-                <li><Link to='/activity'>Activity</Link></li>
-            </ul>
-        </nav>
-    );
-};
+    <div>
+        <Link to="/">
+        <p>App Countries</p>
+        </Link>
+        <div>
+        <Link to="/activity"> Add Activity </Link>
+        </div>
+    </div>
+  );
+}
 
 export default Nav;

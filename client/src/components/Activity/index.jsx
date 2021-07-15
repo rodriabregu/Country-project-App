@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addActivity } from "../../actions";
+import { Link } from 'react-router-dom'
 
 function ActivityFunction() {
   const dispatch = useDispatch();
@@ -30,11 +31,13 @@ function ActivityFunction() {
       cId: state.cId,
     };
     dispatch(addActivity(res));
+    alert('Actividad creada 😎!')
   };
 
   return (
     <div>
-      <h1>Acivitys</h1>
+      <h1>Activitys</h1>
+      <Link to='/home'>x Home x</Link>
       <form onSubmit={handleOnSubmit}>
         <div>
           <label>Name:</label>
@@ -58,7 +61,7 @@ function ActivityFunction() {
           <select name="season" value={state.season} onChange={handleOnChange}>
             <option value="---">-Here-</option>
             <option value={state.summer}>Summer</option>
-            <option value={state.Autumn}>Autumn</option>
+            <option value={state.Fall}>Fall</option>
             <option value={state.Winter}>Winter</option>
             <option value={state.Spring}>Spring</option>
           </select>

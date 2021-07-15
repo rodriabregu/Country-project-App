@@ -1,25 +1,46 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Post } from '../Posts/Posts'
 
-export const Pagination = ({ postsPerPage, totalPosts, paginate, nextPage, prevPage, currentPage}) => {
-    const pageNumbers = [];
+export const Pagination = ({ countriesAll }) => {
+    const [currentPage, setCurrentPage] = useState(0)
 
-    for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) { //Vamos iterando respecto a la cantidad en relacion a
-        pageNumbers.push(i);                                         //la totalidad de los post mostrados y el por pag;
-    };
+    const nextPage = () => {
+        if(countriesAll.length <= currentPage + 10) {
+            setCurrentPage(currentPage);
+        } else setCurrentPage(currentPage + 10)
+    }
+    const prevPage = () => {
+        if(currentPage < 9) {
+            setCurrentPage(0);
+        } else setCurrentPage(currentPage - 10)
+    }
+
+    const pageOne = () => {
+        setCurrentPage(0)
+    }
+
+    if ( currentPage > countriesAll.length) {
+        pageOne();
+    }
+
+    const filterC = countriesAll.slice(currentPage, currentPage + 10)
 
     return ( 
-        <nav>
-            <ul className='pagination'> {/* Si currentPage es mayor a 1, permite renderizar y ejecutrar el 'prev'; */}
-                {currentPage > 1 ? <li onClick={() => prevPage(currentPage)}> <Link to='/home'>PREV</Link></li>: ''} 
-                {pageNumbers.map(number => (
-                    <li key={number} className='page-item'>
-                        <Link to="/home" className='page-link' onClick={() => paginate(number)}>{number}</Link>
-                    </li>
-                ))} {/* Si currentPage es menor a la longitud de PageNumbers, permite renderizar y ejecutrar el 'next'; */}
-                {currentPage < pageNumbers[pageNumbers.length -1] 
-                ? <li onClick={() => nextPage(currentPage)}><Link to="/home">NEXT</Link></li> : ""}
-            </ul>
-        </nav>
+        <div> 
+                    <div>
+                        {currentPage !== 0 ? <button onClick={prevPage}>PREV</button> : <div/>}
+                        {currentPage !== 240 ? <button onClick={nextPage}>NEXT</button> : <div/>}
+                    </div>
+            <div>
+                {filterC && filterC?.map(c => (
+                    <Post key={c.id} 
+                    id = {c.id}
+                    name = {c.name}
+                    flag = {c.flag}
+                    region = {c.region}
+                    />
+                ))}                
+            </div>
+        </div>
     );
 };

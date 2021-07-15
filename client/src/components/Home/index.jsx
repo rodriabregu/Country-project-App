@@ -1,98 +1,82 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-/* import { useDispatch } from "react-redux"; */
-import { BASE_URL } from "../../constants";
-import { Posts } from "../Posts/Posts";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Pagination } from "../Pagination/Pagination";
-/* import { allCountries } from '../../actions' */
-const mystyle = {
-    color: "white",
-    backgroundColor: "DodgerBlue",
-    padding: "16px",
-    margin: "70px",
-    fontFamily: "Arial",
-};
+import { allCountries } from '../../actions'
+import Search from '../Search';
+import { filterCountrysAsc, filterCountrysDsc, regionFilter, activityFilter } from '../../actions';
 
 function Home() {
-    /*const dispatch = useDispatch();*/
-    const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
+    const countries = useSelector((state) => state.countriesAll);
+/*     const countriesFilter = useSelector(state => state.countryFilter) */
+    const countriesAll = useSelector(state => state.countriesAll)
     const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1); //Guarda el state del paginado;
-    const [postsPerPage] = useState(10); //Cantidad de elem que muestra;
-
-    const [usuarios, setUsuarios] = useState([]);
-    const [tablaUsuarios, setTablaUsuarios] = useState([]);
-    const [busqueda, setBusqueda] = useState("");
+    const [activity, setActivity] = useState('');
 
     useEffect(() => {
-        const fetchPosts = async () => {
-        //Guardo dentro de una funcion, la data recibida del back;
-            setLoading(true);
-                const res = await axios.get(BASE_URL);
-            setPosts(res.data);
-            setLoading(false);
-            setUsuarios(res.data);
-            setTablaUsuarios(res.data);
-        };
-    fetchPosts();
-    }, []);
+        dispatch(allCountries())
+    }, [dispatch], );
 
-    //Para recuperar los paises;
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirsPost = indexOfLastPost - postsPerPage;
-    /* const currentPosts = posts.slice(indexOfFirsPost, indexOfLastPost) */
-    const currentFilter = usuarios.slice(indexOfFirsPost, indexOfLastPost);
-    //Cambio de pag;
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    //Prev & Next
-    const nextPage = (pageNumber) => {
-    setCurrentPage(pageNumber + 1);
-    };
-    const prevPage = (pageNumber) => {
-    setCurrentPage(pageNumber - 1);
+    const resetHandler = () =>{
+        dispatch(allCountries())      
     };
 
-    const handleChange = (e) => {
-    setBusqueda(e.target.value);
-    filtrar(e.target.value);
-    };
-    const filtrar = (terminoBusqueda) => {
-        var resultadosBusqueda = tablaUsuarios.filter((e) => {
-        if (
-        e.name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-        ) {
-        return e;
+    const handleRegionChange = e => {
+        dispatch(regionFilter(e.target.value))
+    }
+
+    const handleChangeOrder = (e) =>{
+        if(e.target.value === 'ASC' ){
+            dispatch(filterCountrysAsc(countries))
         }
-        });
-        setUsuarios(resultadosBusqueda);
-    };
+        if(e.target.value === 'DES'){
+            dispatch(filterCountrysDsc(countries))
+        }
+    }
 
-    /* useEffect(()=>{
-        fetchPosts();
-      },[]) */
+    const activityHandler = e => {
+        setActivity(e.target.value)
+    }
+
+    const setInputHandler = e => {
+        e.preventDefault();
+        dispatch(activityFilter(activity))
+    }
 
     return (
-        <div>
-            <input
-                onChange={handleChange}
-                value={busqueda}
-                placeholder="Search"
-                className="searchInput"
-                style={mystyle}
-            ></input>
-            <Posts //Props
-                posts={currentFilter}
-                loading={loading}
-            />
-            <Pagination //Props
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                currentPage={currentPage}
-            />
+        <div> 
+            <Link to='/home' onClick={() => resetHandler()}>Home</Link>
+            <Search /> 
+            <div >
+                <select onChange={handleRegionChange}>
+                    <optgroup label="Select a continent">
+                        <option value="">Select one Continent</option>
+                        <option value="Americas">Américas</option>
+                        <option value="Asia">Asia</option>   
+                        <option value="Europe">Europe</option>   
+                        <option value="Oceania">Oceanía</option>   
+                        <option value="Africa">África</option>
+                        <option value="Polar">Polar</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <select onChange={handleChangeOrder}>
+                    <optgroup label="Select an a Order">
+                        <option value="none">Alphabetical Order</option>
+                        <option value='ASC'>Ascendente</option>
+                        <option value='DES'>Descendente</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <label>Activity</label>
+                <form onSubmit={setInputHandler}>
+                <input placeholder="searching rico..." type="text" value={activity} onChange={activityHandler}/>
+                </form>
+            </div>
+        <Pagination countriesAll={countriesAll} loading={loading}/>
         </div>
     );
 };
