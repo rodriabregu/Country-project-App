@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, GET_URL_COUNTRIES } from '../constants';
+import { BASE_URL } from '../constants';
 
 export const ALL_COUNTRIES = 'ALL_COUNTRIES';
 export const GET_COUNTRIES = 'GET_COUNTRIES';
@@ -74,7 +74,6 @@ export const addActivity = (dataAct) => {
         .post(`http://localhost:3001/activity`, dataAct)
         .then( res => {
             dispatch({ type: ADD_ACTIVITY, payload: res.data });
-        
         });
     };
 };

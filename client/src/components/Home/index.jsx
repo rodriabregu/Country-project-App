@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Pagination } from "../Pagination/Pagination";
-import { allCountries } from '../../actions'
 import Search from '../Search';
-import { filterCountrysAsc, filterCountrysDsc, regionFilter, activityFilter } from '../../actions';
+import { allCountries, filterCountrysAsc, filterCountrysDsc, regionFilter } from '../../actions';
 
 function Home() {
     const dispatch = useDispatch();
     const countries = useSelector((state) => state.countriesAll);
-/*     const countriesFilter = useSelector(state => state.countryFilter) */
     const countriesAll = useSelector(state => state.countriesAll)
-    const [loading, setLoading] = useState(false);
-    const [activity, setActivity] = useState('');
-
-    useEffect(() => {
-        dispatch(allCountries())
-    }, [dispatch], );
 
     const resetHandler = () =>{
         dispatch(allCountries())      
     };
-
+    
     const handleRegionChange = e => {
         dispatch(regionFilter(e.target.value))
     }
-
+    
     const handleChangeOrder = (e) =>{
         if(e.target.value === 'ASC' ){
             dispatch(filterCountrysAsc(countries))
@@ -35,19 +27,14 @@ function Home() {
         }
     }
 
-    const activityHandler = e => {
-        setActivity(e.target.value)
-    }
-
-    const setInputHandler = e => {
-        e.preventDefault();
-        dispatch(activityFilter(activity))
-    }
-
+    useEffect(() => {
+        dispatch(allCountries())
+    }, [dispatch], );
+    
     return (
         <div> 
             <Link to='/home' onClick={() => resetHandler()}>Home</Link>
-            <Search /> 
+            <Search />
             <div >
                 <select onChange={handleRegionChange}>
                     <optgroup label="Select a continent">
@@ -70,13 +57,13 @@ function Home() {
                     </optgroup>
                 </select>
             </div>
-            <div>
+{/*             <div>
                 <label>Activity</label>
                 <form onSubmit={setInputHandler}>
                 <input placeholder="searching rico..." type="text" value={activity} onChange={activityHandler}/>
                 </form>
-            </div>
-        <Pagination countriesAll={countriesAll} loading={loading}/>
+            </div> */}
+        <Pagination countriesAll={countriesAll} />
         </div>
     );
 };

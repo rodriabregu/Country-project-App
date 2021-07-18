@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addActivity } from "../../actions";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { allCountries, addActivity } from "../../actions";
 import { Link } from 'react-router-dom'
 
 function ActivityFunction() {
   const dispatch = useDispatch();
+  const countries = useSelector(state => state.countriesAll)
 
   const [state, setState] = useState({
     name: "",
@@ -13,6 +14,16 @@ function ActivityFunction() {
     season: "",
     cId: [],
   });
+
+  const resetState = () => {
+    setState({
+    name: "",
+    difficulty: "",
+    duration: "",
+    season: "",
+    cId: [],
+  });
+  }
 
   const handleOnChange = (e) => {
     setState({
@@ -23,17 +34,22 @@ function ActivityFunction() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const res = {
-      name: state.name,
-      difficulty: state.difficulty,
-      duration: state.duration,
-      season: state.season,
-      cId: state.cId,
-    };
-    dispatch(addActivity(res));
+    dispatch(addActivity(state));
     alert('Actividad creada 😎!')
+    resetState();
   };
 
+  const handleCountry = (e) => { setState({...state, cId:state.cId.concat(e.target.value) } ) } 
+
+  const resetCodeCountry = (e) => {
+    e.preventDefault()
+    setState({...state, cId:[]})
+  }
+
+  useEffect(() => {
+    dispatch(allCountries())
+  }, [dispatch], );
+  
   return (
     <div>
       <h1>Activitys</h1>
@@ -41,7 +57,7 @@ function ActivityFunction() {
       <form onSubmit={handleOnSubmit}>
         <div>
           <label>Name:</label>
-          <input name="name" value={state.name} onChange={handleOnChange} />
+          <input required autoComplete='off' name="name" value={state.name} onChange={handleOnChange} />
         </div>
         <label>Difficulty:</label>
         <select name="difficulty" value={state.difficulty} onChange={handleOnChange} >
@@ -54,22 +70,27 @@ function ActivityFunction() {
         </select>
         <div>
           <label>Duration:</label>
-          <input name="duration" value={state.duration} onChange={handleOnChange} />
+          <input required autoComplete='off' name="duration" value={state.duration} onChange={handleOnChange} />
         </div>
         <div>
           <label>Season:</label>
           <select name="season" value={state.season} onChange={handleOnChange}>
             <option value="---">-Here-</option>
-            <option value={state.summer}>Summer</option>
+            <option value={state.Summer}>Summer</option>
             <option value={state.Fall}>Fall</option>
             <option value={state.Winter}>Winter</option>
             <option value={state.Spring}>Spring</option>
           </select>
         </div>
         <div>
-          <label>Codigo pais:</label>
-          <input name="cId" value={state.cId} onChange={handleOnChange} />
+          <label>Selecter the code country: </label><br></br>
+            <select onChange={handleCountry} value={state.id}>
+              <option>Selected the code country...</option>
+                {countries?.map( e => ( <option value={e.id}>{e.name}</option> ) ) }
+            </select>
+            <button onClick={resetCodeCountry}>Delete countrys selected</button><br></br>
         </div>
+        <div>{ state.cId && state.cId.map( e=> ( <ul key={e}>{e}</ul>) ) } </div>
         <button>Submit</button>
       </form>
     </div>

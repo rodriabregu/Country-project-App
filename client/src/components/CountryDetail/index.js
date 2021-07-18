@@ -9,9 +9,10 @@ const CountryDetail = () => {
     const dispatch = useDispatch()
 
     let { id } = useParams();
+    
     useEffect(() => {
         dispatch(getDetail(id))
-    }, [id]);
+    }, [dispatch, id]);
 
     return (
         <div>
