@@ -23,6 +23,9 @@ const getNewActivity = async (req, res) => {
       duration,
       season,
     });
+
+    await newAct.setCountries(cId);
+
     let matchCountry = await Country.findOne({ //Devuelve el pais que coincida del body con la db (model: Country);
       where: {
         id: cId,
