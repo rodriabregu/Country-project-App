@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import ActivityFunction from './components/Activity'
 import CountryDetail from './components/CountryDetail'
+
 function App() {
   return (
     <Provider store={store}>

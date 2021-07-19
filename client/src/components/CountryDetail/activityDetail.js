@@ -1,10 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Activity = ({ activities, countryName}) => {
     if(activities && activities.length > 0) {
-        console.log(activities);
-
         return (
         <div>
             <h3>Activited planed in {countryName}</h3>

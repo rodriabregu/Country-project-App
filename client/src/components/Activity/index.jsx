@@ -25,23 +25,23 @@ function ActivityFunction() {
   });
   }
 
-  const handleOnChange = (e) => {
+  const handleOnChange = e => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  const handleOnSubmit = async e => {
+    /* e.preventDefault(); */
     dispatch(addActivity(state));
     alert('Actividad creada 😎!')
     resetState();
   };
 
-  const handleCountry = (e) => { setState({...state, cId:state.cId.concat(e.target.value) } ) } 
+  const handleCountry = e => { setState( {...state, cId:state.cId.concat(e.target.value) } ) } 
 
-  const resetCodeCountry = (e) => {
+  const resetCodeCountry = e => {
     e.preventDefault()
     setState({...state, cId:[]})
   }
@@ -57,25 +57,25 @@ function ActivityFunction() {
       <form onSubmit={handleOnSubmit}>
         <div>
           <label>Name:</label>
-          <input required autoComplete='off' name="name" value={state.name} onChange={handleOnChange} />
+          <input type="text" maxLength="16" required autoComplete='off' name="name" value={state.name} onChange={handleOnChange} />
         </div>
         <label>Difficulty:</label>
         <select name="difficulty" value={state.difficulty} onChange={handleOnChange} >
-          <option value="here">-Here-</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
+          <option value="---">---</option>
+          <option value={1}>1 - Very easy</option>
+          <option value={2}>2 - Easy</option>
+          <option value={3}>3 - Medium</option>
+          <option value={4}>4 - Hard</option>
+          <option value={5}>5 - Very difficult</option>
         </select>
         <div>
-          <label>Duration:</label>
-          <input required autoComplete='off' name="duration" value={state.duration} onChange={handleOnChange} />
+          <label>Duration (in days):</label>
+          <input type='number' min="-0" max="31" required autoComplete='off' name="duration" value={state.duration} onChange={handleOnChange} />
         </div>
         <div>
           <label>Season:</label>
           <select name="season" value={state.season} onChange={handleOnChange}>
-            <option value="---">-Here-</option>
+            <option value="---">---</option>
             <option value={state.Summer}>Summer</option>
             <option value={state.Fall}>Fall</option>
             <option value={state.Winter}>Winter</option>
@@ -83,15 +83,15 @@ function ActivityFunction() {
           </select>
         </div>
         <div>
-          <label>Selecter the code country: </label><br></br>
+          <label>Select the countries: </label><br></br>
             <select onChange={handleCountry} value={state.id}>
-              <option>Selected the code country...</option>
+              <option>Select the countries of the activity...</option>
                 {countries?.map( e => ( <option value={e.id}>{e.name}</option> ) ) }
             </select>
-            <button onClick={resetCodeCountry}>Delete countrys selected</button><br></br>
+            <button onClick={resetCodeCountry}>Remove selected countries</button><br></br>
         </div>
-        <div>{ state.cId && state.cId.map( e=> ( <ul key={e}>{e}</ul>) ) } </div>
-        <button>Submit</button>
+        <div> { state.cId && state.cId.map( e=> ( <ul key={e}>{e}</ul>) ) } </div>
+        <button> Submit </button>
       </form>
     </div>
   );

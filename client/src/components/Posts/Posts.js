@@ -11,7 +11,7 @@ export const Post = ({ name, flag, region, id, loading }) => {
             <h3>{name}</h3>
             <h3>{region}</h3>
             <div>
-            <img src={flag} alt="not found" />
+                <img src={flag} alt="not found" />
             </div>
         </div>
         </Link>

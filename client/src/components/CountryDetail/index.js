@@ -5,10 +5,10 @@ import { getDetail } from '../../actions';
 import Activity from './activityDetail'
 
 const CountryDetail = () => {
-    const countryDetail = useSelector((state) => state.countryDetail);
+    const countryDetail = useSelector(s => s.countryDetail);
     const dispatch = useDispatch()
 
-    let { id } = useParams();
+    const { id } = useParams();
     
     useEffect(() => {
         dispatch(getDetail(id))
@@ -24,18 +24,18 @@ const CountryDetail = () => {
                 <h3>{countryDetail.id}</h3>
             </div>
             <div>
-            <img src={countryDetail.flag} alt="No img" />
+            <img src={countryDetail.flag} alt="Not found" />
             </div>
             <h4>Continent: {countryDetail.region}</h4>
             <h5>Capital: {countryDetail.capital}</h5>
             <h5>Subregion: {countryDetail.subregion}</h5>
-            <h5>Population: {countryDetail.population} m.</h5>
+            <h5>Population: {countryDetail.population} h.</h5>
             <h4>Area: {countryDetail.area} km2.</h4>
             <div>
                 <Activity countryName={countryDetail.name} activities={countryDetail.activities}/>
             </div>
         </div>
-        )
+    )
 };
 
 export default CountryDetail;
