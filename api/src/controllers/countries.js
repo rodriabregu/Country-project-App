@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const { Country, Activity } = require("../db.js");
 
 const getAllCountrys = async (_req, res) => {
@@ -16,6 +15,7 @@ const getFilterCountrys = async (req, res) => {
     try {
       const result = await Country.findAll({ //Comprueba si hay match con lo recibido del query;
         where: { name: name },
+        include: Activity,
       });
       if ( !result ) {
         return res.status(404).send("Country search does not match."); //En caso de que no haya coincidencia;

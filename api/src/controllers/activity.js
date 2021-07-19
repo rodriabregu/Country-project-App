@@ -26,16 +26,22 @@ const getNewActivity = async (req, res) => {
 
     await newAct.setCountries(cId);
 
-    let matchCountry = await Country.findOne({ //Devuelve el pais que coincida del body con la db (model: Country);
+    let matchCountry = await Country.findAll({ //Devuelve el pais que coincida del body con la db (model: Country);
       where: {
         id: cId,
       },
+      include: Activity,
     });
     let succAct = await newAct.addCountries(matchCountry);
 
     return res.send(succAct);
   };
 };
+
+const getAllActivity = async (req, res) => {
+  await Activity.findAll()
+    return res.json(await Activity.findAll())
+}
 
 const getActId = async (req, res) => {
   try {
@@ -58,5 +64,6 @@ const getActId = async (req, res) => {
 
 module.exports = {
   getNewActivity,
+  getAllActivity,
   getActId,
 };
