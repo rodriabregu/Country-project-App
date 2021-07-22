@@ -1,0 +1,113 @@
+/* body {
+    background-image: linear-gradient(45deg, #796aa138, #685e8538), url(../../img/sanandres.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vw;
+    background: linear-gradient(45deg, #796aa138, #685e8538), url(../../img/sanandres.jpg);
+    background-size: cover;
+    background-position: center;
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+} */
+
+body{
+    background: linear-gradient(45deg, #796aa138, #685e8538), url(../../img/Landingpage.gif);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+/*     background-image: no-repeat; */
+/*     background-image: fixed; */
+/*     background-image: center; */
+/*     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; */
+}
+/* .header {
+    width: 100%;
+    height: 100vw;
+    background: linear-gradient(45deg, #796aa138, #685e8538), url(../../img/sanandres.jpg);
+    background-size: cover;
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}; */
+
+.navLanding {
+    padding: 50px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.logo {
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.navUlLandin {
+    display: flex;
+}
+
+.navliLanding {
+    margin-left: 15px;
+    list-style: none;
+}
+
+.navLinkLanding {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.navLinkLanding:hover {
+    text-decoration: underline;
+}
+
+.header-cont {
+    max-width: 600px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.header-cont h2{
+    font-size: 60px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.header-cont p{
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+}
+
+.nose{
+    display: inline-block;
+    margin-top: 25px;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #626262;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.nose:hover{
+    transform: translateY(-5px);
+}

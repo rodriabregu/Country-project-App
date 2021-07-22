@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { allCountries, getCountries } from '../../actions';
+import { allCountries, getCountries } from '../../redux/actions';
+import { VscSearch } from 'react-icons/vsc';
+import './search.css';
 
 const Search = () => {
     const [state, setState] = useState('');
@@ -22,8 +24,8 @@ const Search = () => {
         <div>
             <div>
                 <input required autoComplete='off' type='text' placeholder='Find a country...' name='input' onChange={e => inputHandler(e)} />
-                <button onClick={onClickHandler}>Search</button>
-                <button onClick={resetHandler}>Reset</button>
+                <button className='btn-generic' onClick={onClickHandler}>Search <VscSearch/></button>
+                <button className='btn-generic2' onClick={resetHandler}>Reset</button>
             </div>
         </div>
     );

@@ -1,20 +1,27 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { NavLink as Link  } from "react-router-dom";
+import './nav.css';
+import { BiHomeAlt } from 'react-icons/bi';
+import { FaInfoCircle } from 'react-icons/fa';
+import { IoCreateOutline } from 'react-icons/io5';
 
 function Nav() {
-
-    return (
-    <div>
-        <Link to="/">
-        <p>App Countries</p>
+  
+  return (
+    <>
+      <nav className="topnav">
+        <Link to='/home'>
+          Home <span><BiHomeAlt /></span>     
         </Link>
-        <div>
-        <Link to="/home"> HOME </Link>
-        </div>
-        <div>
-        <Link to="/activity"> Add Activity </Link>
-        </div>
-    </div>
+        <Link to='/activity'>
+          Activity create <IoCreateOutline/>
+        </Link>
+        <Link to='/about'>
+          About <FaInfoCircle />
+        </Link>
+      </nav>
+    </>
   );
-}
+};
 
 export default Nav;

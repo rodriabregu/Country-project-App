@@ -22,7 +22,7 @@ const Activity = ({ activities, countryName}) => {
                             <td>{a.duration}</td>
                             <td>{a.season}</td>
                             <td>{a.difficulty}</td>
-                            <td>{a.id}</td>
+                            {/* <td>{a.id}</td> */}
                         </tr>
                     ))}
                 </tbody>

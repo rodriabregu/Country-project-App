@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetail } from '../../actions';
+import { getDetail } from '../../redux/actions';
 import Activity from './activityDetail'
 
 const CountryDetail = () => {
