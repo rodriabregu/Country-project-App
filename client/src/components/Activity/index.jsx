@@ -55,6 +55,7 @@ function ActivityFunction() {
   return (
     <div className='form-register'>
       <h1>Activitys</h1>
+      <br/>
       <form onSubmit={handleOnSubmit}>
         <div>
           <input className='controls' placeholder="Enter the name of the activity..." type="text" maxLength="16" required autoComplete='off' name="name" value={state.name} onChange={handleOnChange} />
@@ -80,14 +81,13 @@ function ActivityFunction() {
           </select>
         </div>
         <div>
-          <label>Select the countries: </label><br></br>
             <select className='selectact' onChange={handleCountry} value={state.id}>
               <option>Select the countries of the activity...</option>
                 {countries?.map( e => ( <option key={e.alpha3Code} value={e.id}>{e.name}</option> ) ) }
             </select>
             <button className='botons' onClick={resetCodeCountry}>Remove selected countries</button><br></br>
         </div>
-        <div> { state.cId && state.cId.map( e=> ( <ul key={e}>{e}</ul>) ) } </div>
+        <div> { state.cId && state.cId.map( e=> ( <ul className='countryscreates' key={e}>{e}</ul>) ) } </div>
         <button className='btn-submit'> Submit </button>
       </form>
     </div>

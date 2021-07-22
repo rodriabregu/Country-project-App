@@ -13,17 +13,13 @@
     background-image: center;
 } */
 
-body{
+.bodybk{
     background: linear-gradient(45deg, #796aa138, #685e8538), url(../../img/Landingpage.gif);
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center center;
-/*     background-image: no-repeat; */
-/*     background-image: fixed; */
-/*     background-image: center; */
-/*     -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover; */
+    transform: scale(8.6, 8.9);
+    position: absolute;
+    z-index: -1;
+    left: 40%
 }
 /* .header {
     width: 100%;

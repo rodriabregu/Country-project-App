@@ -1,87 +1,64 @@
-/* .btn-submit{
-    background:#1AAB8A;
-    color:#fff;
-    border:none;
-    position:relative;
-    height:60px;
-    font-size:1.45em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
-  }
-  .btn-submit:hover{
-    background:#fff;
-    color:#1AAB8A;
-  }
-  .btn-submit:before,button:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #1AAB8A;
-    transition:400ms ease all;
-  }
-  .btn-submit:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  .btn-submit:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
-  } */
-
-.bodyactivity {
-  background-color: red;
-  background-size: 55%;
-  background-color: #fdfdfd;
-  overflow: hidden;
-  padding: 100px 0;
+.centerformact {
+  padding-left: 49px;
+  padding-bottom: 15px;
 }
 
-.countryscreates {
-  margin-bottom: 6px;
+.centerh3act {
+  padding-right: 38px;
+  margin-bottom: 8px;
+}
+
+.imgform {
+  border-radius: 6px;
+}
+
+thead,
+tfoot { /* font */
+  background-color: #152758;
+  color: #fff;
+}
+
+tbody {
+  background-color: #71838b;
+}
+
+caption {
+  padding: 10px;
+  caption-side: bottom;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(200, 200, 200);
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+td,
+th {
+  border: 1px solid rgb(190, 190, 190);
+  padding: 5px 10px;
+}
+
+td {
   text-align: center;
-  padding-left: 20px;
-  border-radius: 3px;
-  font-family: "calibri";
-  color: white;
-  box-shadow: 7px 13px 37px #000;
-  width: auto;
+}
+.h1detail{
+  text-align: center;
+  font-size: 21px;
 }
 
-.content-select2 {
-  max-width: 250px;
-  position: relative;
+.divdetailtitle {
+  text-align: center;
+  margin-bottom: 8px;
 }
 
-.content-select2 select {
-  display: inline-block;
-  width: 9%;
-  cursor: pointer;
-  padding: 0px 5px;
-  margin: auto;
-  height: 25px;
-  outline: 0;
-  border: 0;
-  border-radius: 0;
-  background: #f0f0f0;
-  color: #7b7b7b;
-  font-size: 1em;
-  color: #999;
-  font-family: "Quicksand", sans-serif;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  position: relative;
-  transition: all 0.25s ease;
-}
-
-.content-select2 select:hover {
-  background: #b1e8cd;
+.countrystats {
+  text-align: center;
+  margin-top: 11px;
+  margin-bottom: 19px;
+  font-size: 21px;
 }
 
 .btn-submit {
@@ -114,10 +91,10 @@
 
 /*\\\\\\\\\\\\\  fomrulario  //////////////*/
 
-.form-register {
+.form-detail {
   width: 400px;
   /*   background: #24303c; */
-  background: rgba(36, 48, 60, 0.65);
+  background: rgba(89, 100, 109, 0.65);
   padding: 30px;
   margin: auto;
   margin-top: 90px;
@@ -127,7 +104,7 @@
   box-shadow: 7px 13px 37px #000;
 }
 
-.form-register h4 {
+.form-detail h4 {
   font-size: 22px;
   margin-bottom: 20px;
 }
@@ -144,24 +121,24 @@
   color: white;
 }
 
-.form-register p {
+.form-detail p {
   height: 40px;
   text-align: center;
   font-size: 18px;
   line-height: 40px;
 }
 
-.form-register a {
+.form-detail a {
   color: white;
   text-decoration: none;
 }
 
-.form-register a:hover {
+.form-detail a:hover {
   color: white;
   text-decoration: underline;
 }
 
-.form-register .botons {
+.form-detail .botons {
   width: 100%;
   background: #1f53c5;
   border: none;
@@ -187,4 +164,39 @@
   border-radius: 5px;
   font-family: "Open Sans", sans-serif;
   margin-bottom: 15px;
+}
+
+.btnbackcountry {
+  background-color: #3e1886;
+  border-radius: 3px;
+  border: 0.5px solid #3a1949;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  padding: 5px 18px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5d5a5f;
+}
+.btnbackcountry:hover {
+  background-color: #462386;
+}
+
+.btn-planned {
+  margin-bottom: 20px;
+  background-color: #3e1886;
+  border-radius: 3px;
+  border: 0.5px solid #3a1949;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  padding: 9px 36px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5d5a5f;
+}
+.btn-planned:hover {
+  background-color: #462386;
 }

@@ -1,9 +1,12 @@
 import { NavLink as Link } from 'react-router-dom';
 import { MdCardTravel } from 'react-icons/md'
 import './landing.css';
+import imggif from '../../img/Landingpage.gif'
 
 const Landing = () => {
     return (
+        <div>
+        <img className='bodybk' src={imggif} ></img>
         <header className='header'>
             <nav className='navLanding'>
                 <div className='logo'>
@@ -21,6 +24,7 @@ const Landing = () => {
                 <Link className='nose' to='/home'>Start here</Link>
             </div>
         </header>
+            </div>
     );
 };  
 

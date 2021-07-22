@@ -9,6 +9,10 @@ body {
     color: var(--clr-gray);
 }
 
+select{
+    margin: 3px;
+}
+
 /* .btn-generic {
         background-color:#40168d;
         border-radius:28px;
@@ -29,6 +33,17 @@ body {
     position:relative;
     top:1px;
 } */
+
+.filterbuttom {
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 13px;
+    background: #533CA8;
+    padding: 4px 9px 4px 9px;
+    text-decoration: none;
+}
 
 .btn-next {
     -webkit-border-radius: 24;
@@ -141,7 +156,7 @@ button:focus {
 } */
 
 :root {
-	--background-color: #ffe5e5;
+	--background-color: #e5e7ff;
 	--color: #000000;
 	--feedback-bg-color: #ffffff;
 	--feedback-secondary-color: #ffacac;
@@ -209,6 +224,11 @@ button:focus {
     color: white;
     padding: 1rem;
     background-color: var(--clr-primary);
+
+}
+
+.btn:hover {
+    background-color: #794492;
 }
 
 h2 {

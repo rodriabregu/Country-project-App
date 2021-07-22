@@ -32,11 +32,6 @@ export const Pagination = () => {
         setOrder(e.target.value)
     }
 
-    const resetHandler = () =>{
-        dispatch(allCountries()) 
-        setFilter(countries)  
-    };
-
     const countriesFiltered = filter && filter.length > 0 ? filter : countries;
 
     const handleChange = e => {
@@ -90,14 +85,15 @@ export const Pagination = () => {
         {
             countries.length > 0 ?
             <div>
-                <Link to='/home' onClick={() => resetHandler()}>Home</Link>
+                <br/>
                 <div className="content-select">
                     <div>
-                        <button className='btn-first' onClick={firstPage}>{'<<'}</button>
-                        <button className='btn-prev' onClick={prevPage}>PREV</button>
-                        <button className='btn-next' onClick={nextPage}>NEXT</button>
-                        <button className='btn-last' onClick={lastPage}>{'>>'}</button>
+                        {page > 1 ? <button className='btn-first' onClick={firstPage}>{'<<'}</button> : ""}
+                        {page > 1 ? <button className='btn-prev' onClick={prevPage}>PREV</button> : ""}
+                        {page < 240 ? <button className='btn-next' onClick={nextPage}>NEXT</button> : ""}
+                        {page < 240 ? <button className='btn-last' onClick={lastPage}>{'>>'}</button> : ""}
                     </div>
+                    <br/>
                     <select onChange={handleOrder}>
                         <option value='D'>Order by:</option>
                         <option value='AZ'> A to Z </option>
@@ -125,10 +121,11 @@ export const Pagination = () => {
                             }) : null
                         }
                     </select>
-                    <button onClick={submitFilter}>Filtrar</button>
+                    <button className='filterbuttom' onClick={submitFilter}>Filter</button>
                     </form>
                 </div>
                 <div>
+                <br/>
 
                     <div className='wrapper-flex'>
                         {countriesFiltered.length > 0 ? countriesFiltered.slice(page, page + 10).map(c => {
