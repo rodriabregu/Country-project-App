@@ -2,7 +2,9 @@ const { Country, Activity } = require("../db.js");
 
 const getAllCountrys = async (_req, res) => {
   try {
-    let countriesDB = await Country.findAll(); //Deposito todo lo guardadod de la db;
+    let countriesDB = await Country.findAll({
+      include: [Activity]
+    }); //Deposito todo lo guardadod de la db;
     res.json(countriesDB);
   } catch (err) {
     console.log("Could not load the countries from the database.", err);
@@ -15,7 +17,7 @@ const getFilterCountrys = async (req, res) => {
     try {
       const result = await Country.findAll({ //Comprueba si hay match con lo recibido del query;
         where: { name: name },
-        include: Activity,
+        include: [Activity]
       });
       if ( !result ) {
         return res.status(404).send("Country search does not match."); //En caso de que no haya coincidencia;
@@ -42,7 +44,7 @@ const getId = async (req, res) => {
     if ( idPais ) {
       const result = await Country.findOne({ //Guarda la coincidencia que haya mediante params y si tiene actividad, también la devuelve;
         where: { id: idPais.toUpperCase() },
-        include: Activity,
+        include: [Activity]
       });
       if (!result) {
         return res.status(404).send("ID Not found into our database");

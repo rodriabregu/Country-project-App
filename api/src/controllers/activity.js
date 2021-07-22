@@ -30,11 +30,11 @@ const getNewActivity = async (req, res) => {
       where: {
         id: cId,
       },
-      include: Activity,
+      include: [Activity]
     });
-    let succAct = await newAct.addCountries(matchCountry);
+    await newAct.addCountries(matchCountry);
 
-    return res.send(succAct);
+    return res.send(matchCountry);
   };
 };
 
