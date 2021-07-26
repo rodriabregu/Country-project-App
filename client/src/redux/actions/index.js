@@ -59,7 +59,14 @@ export const activityFilter = (countries, filter) => {
     let filtered = [];
     if(countries[0].activities) {
     filtered = countries.filter(
-        (e) => e.activities[0]?.name === filter || e.activities[1]?.name === filter,
+        (e) => {
+            for(let i = 0; i < e.activities.length; i++) {
+                if (e.activities[i].name === filter) {
+                    return true;
+                }
+            }
+        /* e.activities[0]?.name === filter || e.activities[1]?.name === filter || e.activities[2]?.name === filter, */
+    }
     )};
     return {
         type: ACTIVITY_FILTER,

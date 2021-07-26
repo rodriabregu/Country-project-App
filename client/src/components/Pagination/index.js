@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllActivity, allCountries, activityFilter } from '../../redux/actions';
 import { Loading } from '../Loading';
+import { ImFirst, ImLast } from 'react-icons/im';
+import { BiFilter } from 'react-icons/bi'
+import { BiMessageSquareDots } from 'react-icons/bi';
 import './pagination.css';
 
 export const Pagination = () => {
@@ -27,6 +30,7 @@ export const Pagination = () => {
 
     const Asc = (a, b) => { return b.population - a.population} //Si es positivo, el segundo elemento es superior al primero, la poblacion va menor a mayor
     const Desc = (a, b) => { return a.population - b.population} //Si es negativo, el primer elemento es superior al segundo osea, la poblacion de menor a mayor
+    const AreaDsc = (a, b) => { return a.area - b.area}
 
     const handleOrder = (e) => {
         setOrder(e.target.value)
@@ -66,6 +70,7 @@ export const Pagination = () => {
             case 'ZA': setPage(0); return setFilter([...countriesFiltered].sort(ZA))
             case 'Asc': setPage(0); return setFilter([...countriesFiltered].sort(Asc))
             case 'Desc': setPage(0); return setFilter([...countriesFiltered].sort(Desc))
+            case 'AreaDsc': setPage(0); return setFilter([...countriesFiltered].sort(AreaDsc))
             default: return countriesFiltered;
         }
     }, [countries, order])
@@ -88,10 +93,10 @@ export const Pagination = () => {
                 <br/>
                 <div className="content-select">
                     <div>
-                        {page > 1 ? <button className='btn-first' onClick={firstPage}>{'<<'}</button> : ""}
+                        {page > 1 ? <button className='btn-first' onClick={firstPage}>{<ImFirst/>}</button> : ""}
                         {page > 1 ? <button className='btn-prev' onClick={prevPage}>PREV</button> : ""}
                         {page < 240 ? <button className='btn-next' onClick={nextPage}>NEXT</button> : ""}
-                        {page < 240 ? <button className='btn-last' onClick={lastPage}>{'>>'}</button> : ""}
+                        {page < 240 ? <button className='btn-last' onClick={lastPage}>{<ImLast/>}</button> : ""}
                     </div>
                     <br/>
                     <select onChange={handleOrder}>
@@ -100,6 +105,7 @@ export const Pagination = () => {
                         <option value='ZA'> Z to A </option>
                         <option value='Asc'> Ascending population </option>
                         <option value='Desc'> Descending population </option>
+                        <option value='AreaDsc'> Area </option>
                     </select>
                     <select onChange={handleChange}>
                         <option value='---'>Continent by:</option>
@@ -121,12 +127,12 @@ export const Pagination = () => {
                             }) : null
                         }
                     </select>
-                    <button className='filterbuttom' onClick={submitFilter}>Filter</button>
+                    <button className='filterbuttom' onClick={submitFilter}>Filter<BiFilter/></button>
                     </form>
                 </div>
                 <div>
                 <br/>
-
+                    {/* Visual render page */}
                     <div className='wrapper-flex'>
                         {countriesFiltered.length > 0 ? countriesFiltered.slice(page, page + 10).map(c => {
                             return (
@@ -141,7 +147,7 @@ export const Pagination = () => {
                                                 <p> Continent: {c.region} </p>
                                             <div className='btn'>
                                                 <Link key={c.id} to={`/home/${c.id}`}>
-                                                    <h2> See more.. </h2>
+                                                    <h2> See more <BiMessageSquareDots/></h2>
                                                 </Link>
                                             </div>
                                             </div>

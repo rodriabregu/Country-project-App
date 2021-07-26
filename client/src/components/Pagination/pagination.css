@@ -5,7 +5,7 @@
 }
 
 body {
-    margin: 6rem;
+    margin: 6.4rem;
     color: var(--clr-gray);
 }
 
@@ -48,12 +48,13 @@ select{
 .btn-next {
     -webkit-border-radius: 24;
     -moz-border-radius: 24;
-    border-radius: 24px;
+    border-radius: 0px 18px 7px 18px;
     color: #ffffff;
     font-size: 13px;
     background: #533CA8;
     padding: 4px 15px 4px 15px;
     text-decoration: none;
+    margin-right: 3px;
 }
 
 .btn-next:hover {
@@ -64,12 +65,14 @@ select{
 .btn-prev {
     -webkit-border-radius: 24;
     -moz-border-radius: 24;
-    border-radius: 24px;
+    border-radius: 0px 18px 7px 18px;
     color: #ffffff;
     font-size: 13px;
     background: #533CA8;
     padding: 4px 15px 4px 15px;
     text-decoration: none;
+    margin-right: 5px;
+    margin-left: 3px;
 }
 
 .btn-prev:hover {
@@ -80,7 +83,7 @@ select{
 .btn-first {
     -webkit-border-radius: 24;
     -moz-border-radius: 24;
-    border-radius: 24px;
+    border-radius: 0px 12px 0px 9px;
     color: #ffffff;
     font-size: 13px;
     background: #533CA8;
@@ -96,7 +99,7 @@ select{
 .btn-last {
     -webkit-border-radius: 24;
     -moz-border-radius: 24;
-    border-radius: 24px;
+    border-radius: 12px 0px 9px 0px;
     color: #ffffff;
     font-size: 13px;
     background: #533CA8;
@@ -168,8 +171,8 @@ button:focus {
 
 .container {
     overflow: hidden;
-    box-shadow: 0px 2px 8px 0px var(--clr-gray-light);
-    background-color: rgba(236, 236, 236, 0.7);
+    box-shadow: 0px 2px 6px 0px var(--clr-gray-light);
+    background-color: rgba(236, 236, 236, 0.45);
     text-align: center;
     border-radius: 2.3rem;
     position: relative;
@@ -177,6 +180,8 @@ button:focus {
     margin-bottom: 5rem;
     margin-left: 3rem;
 }
+
+
 
 .container .card {
     position: relative;

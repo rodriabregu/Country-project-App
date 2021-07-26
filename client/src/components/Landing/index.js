@@ -1,12 +1,30 @@
 import { NavLink as Link } from 'react-router-dom';
 import { MdCardTravel } from 'react-icons/md'
+import { motion } from "framer-motion";
 import './landing.css';
 import imggif from '../../img/Landingpage.gif'
 
+const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: { delay: 1.5, duration: 1.5},
+    },
+    exit: {
+      x: "-100vh",
+      transition: { ease: "easeInOut", duration: 0.8 },
+    },
+  };
+
 const Landing = () => {
     return (
-        <div>
-        <img className='bodybk' src={imggif} ></img>
+        <motion.div variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        exit="exit">
+        <img className='bodybk' src={imggif} alt="not fount"></img>
         <header className='header'>
             <nav className='navLanding'>
                 <div className='logo'>
@@ -24,7 +42,7 @@ const Landing = () => {
                 <Link className='nose' to='/home'>Start here</Link>
             </div>
         </header>
-            </div>
+            </motion.div>
     );
 };  
 

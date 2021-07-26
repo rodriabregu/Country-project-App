@@ -2,8 +2,28 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getDetail } from '../../redux/actions';
+import { motion } from 'framer-motion';
 import Activity from './activityDetail'
 import './details.css';
+
+const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: "50vh",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+    exit: {
+      y: "-100vh",
+      transition: { ease: "easeInOut" },
+    },
+  };
 
 const CountryDetail = () => {
     const countryDetail = useSelector(s => s.countryDetail);
@@ -16,7 +36,11 @@ const CountryDetail = () => {
     }, [dispatch, id]);
 
     return (
-        <div className='form-detail'>
+        <motion.div className='form-detail'
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        exit="exit">
             <div className='divdetailtitle'>
                 <div className='h1detail'>
                     <h1>{countryDetail.name}</h1>
@@ -39,7 +63,7 @@ const CountryDetail = () => {
             <button className='btnbackcountry'>
                 <Link to='/home'>Back to countries</Link>
             </button>
-        </div>
+        </motion.div>
     )
 };
 
