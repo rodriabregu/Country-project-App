@@ -1,8 +1,6 @@
-<p align='left'>
-    <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
-</p>
+<h3># Entire project made front-end, back-end and database from scratch. Application that allows to render all the countries and see a detailed map of them. Also being able to create tourist activities and associate them to the country you want.</h3>
 
-# Individual Project - Henry Countries
+# Api Countries Project
 
 <p align="left">
   <img height="200" src="./countries.png" />
